@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModifyProfileController!{% endblock %}
+
+{% block body %}
+<style>
+   
+</style>
+
+<div class="container">
+    <table width="50%">
+        <tr>
+            <th colspan="2">
+                YOUR PROFILE
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Username:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone number:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address:
+            </td>
+        </tr>
+        <tr id="userRegistration">
+            <td colspan="2">
+                <button><a href="index.php?page=ModifyProfile">Modify</a></button>
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

@@ -5,6 +5,8 @@ namespace App\Cart;
 class CartManager
 {   
     //id => {product, quantity}
+
+    //sadksa
     private $items = [];
     public function addItem($product, $quantity = 1){
         if (array_key_exists($product->getId(), $this->items)){
