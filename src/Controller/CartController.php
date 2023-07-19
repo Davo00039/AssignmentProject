@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Cart\CartManager;
-use App\Entity\SanPham;
+use App\Entity\SP;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,7 +30,11 @@ class CartController extends AbstractController
     #[Route('/cart/add/{product_id}', name: 'app_cart_add', methods: 'post')]
     public function add(int $product_id, Request $request, EntityManagerInterface $em): Response
     {
+<<<<<<< HEAD
         $product = $em->find(SanPham::class, $product_id);
+=======
+        $product = $em->find(SP::class, $product_id);
+>>>>>>> 7d4995744768c87150b2a1111cccd16c967213f8
         $session = $request->getSession();
         $cart_manager = $session->get('cart', new CartManager());
         $cart_manager->addItem($product, 1);
@@ -40,7 +44,11 @@ class CartController extends AbstractController
     #[Route('/cart/remove/{product_id}', name: 'app_cart_remove')]
     public function remove(int $product_id, Request $request, EntityManagerInterface $em): Response
     {
+<<<<<<< HEAD
         $product = $em->find(SanPham::class, $product_id);
+=======
+        $product = $em->find(SP::class, $product_id);
+>>>>>>> 7d4995744768c87150b2a1111cccd16c967213f8
         $session = $request->getSession();
         $cart_manager = $session->get('cart', new CartManager());
         $cart_manager->removeItem($product);
@@ -53,7 +61,11 @@ class CartController extends AbstractController
     {
         $product_id = $request->request->get('product_id');
         $quantity = $request->request->get('qty');
+<<<<<<< HEAD
         $product = $em->find(SanPham::class, $product_id);
+=======
+        $product = $em->find(SP::class, $product_id);
+>>>>>>> 7d4995744768c87150b2a1111cccd16c967213f8
         $session = $request->getSession();
         $cart_manager = $session->get('cart', new CartManager());
         $cart_manager->updateItem($product, $quantity);

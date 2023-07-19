@@ -41,22 +41,6 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    // #[Route('/search', name: 'app_search')]
-    // public function search(Request $request): Response
-    // {
-    //     $query = $request->query->get('query'); // Get the search query from the request parameters
-
-    //     // Perform the search operation using the query
-    //     // Replace this code with your actual search implementation
-    //     $results = $this->getDoctrine()
-    //         ->getRepository(SanPhamType::class)
-    //         ->findBy(['name' => $query]);
-
-    //     return $this->render('search/search.html.twig', [
-    //         'results' => $results,
-    //         'query' => $query,
-    //     ]);
-    // }
 
 }
 

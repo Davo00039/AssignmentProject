@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SPRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SPRepository::class)]
@@ -24,6 +26,14 @@ class SP
 
     #[ORM\ManyToOne(inversedBy: 'sPs')]
     private ?Category $cate = null;
+
+    #[ORM\OneToMany(mappedBy: 'item', targetEntity: OrderItem::class)]
+    private Collection $orderItems;
+
+    public function __construct()
+    {
+        $this->orderItems = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,36 @@ class SP
     public function setCate(?Category $cate): self
     {
         $this->cate = $cate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderItem>
+     */
+    public function getOrderItems(): Collection
+    {
+        return $this->orderItems;
+    }
+
+    public function addOrderItem(OrderItem $orderItem): static
+    {
+        if (!$this->orderItems->contains($orderItem)) {
+            $this->orderItems->add($orderItem);
+            $orderItem->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderItem(OrderItem $orderItem): static
+    {
+        if ($this->orderItems->removeElement($orderItem)) {
+            // set the owning side to null (unless already changed)
+            if ($orderItem->getItem() === $this) {
+                $orderItem->setItem(null);
+            }
+        }
 
         return $this;
     }

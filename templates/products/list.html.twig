@@ -24,48 +24,41 @@
 {% block body %}
    <table width="100%" border="1" style="border-collapse:collapse">
     <tr>
-        <th colspan="3"><b>Product</b></th>
+
+        <th colspan="4"><b>Product</b></th> 
+
+
     </tr>
 
-    {% for row in data %}
+    {% for sp in data %}
         {% if loop.index % 3 == 0 %}
             <tr>
         {% endif %}
         <td width="33%">
             {# <a href="{{ path('product_detail', {'id': row.product_id}) }}"> #}
                 <center>
-                    <b>{{ row.name }}</b><br/>
-                    <img src="{{ asset('uploads/sanpham/' ~ row.photo) }}" height="100px"><br/>
-                    {{ row.gia|number_format(0) }} VND
-                </center>
-            {# </a> #}
-            {# <center>
-                <a href="{{ path('add_to_cart', {'id': row.product_id}) }}"><button>Add to cart</button></a>
-            </center> #}
-        </td>
+                    <b>{{ sp.name }}</b><br/>
+                    <img src="{{ asset('uploads/sanpham/' ~ sp.photo) }}" height="100px"><br/>
+                    {{ sp.gia|number_format(0) }} VND
+                </center> 
+                <form>
+                
+                <center><button type="submit" formmethod="post" formaction="{{path('app_cart_add',{'product_id':sp.getId()})}}">Add to cart</button> </center> 
+          
+                </form> 
+                {# <center><a href="{{path('app_cart_add',{'product_id':sp.getId()})}}"><button>Add to cart</button></a></center>
+        </td> #}
         {% if loop.index % 3 == 2 %}
             </tr>
         {% endif %}
+        
     {% endfor %}
     {% if data|length % 3 != 0 %}
         </tr>
     {% endif %}
+    
 </table>
 
-     {# {% for sp in data %}
-
-     
-         <table style="width: 70%; margin: auto;">
-                <tr style="width: 50%">
-                    <td>{{loop.index}}</td>
-                    <td>{{sp.getId()}}</td>
-
-                    <td><img src="{{asset('uploads/sanpham/' ~ sp.getPhoto())}}" height="150" /></td>
-                    <td>{{sp.getName()}}</td>
-                    <td>{{sp.getGia()}}</td>
-                </tr> 
-         </table>
-      {% endfor %} #}
 {% endblock %}  
 
 {% block javascripts %}
